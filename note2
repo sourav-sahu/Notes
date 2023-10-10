@@ -1,0 +1,80 @@
+Lightening network---Routing fee
+Scarce ..21 million ...no taxable event...Perfectly inelastic supply...
+
+why use in int. payment to customer? Simplicity, no burden of managing key
+Charges by exchange (0.05%), but more for retial
+Not FDIC insured, not trustworthy
+
+Why bank?  
+Bitcoin is not scalable. Tradeoff between Security(100 Exhash, Joule?, Again decentralized compared to US navy, 51% atack , incentive structure ), Decentralization and Scalability
+4MB block size(understand it)
+6 transactiobn/ second ( like Fed Wire)...Final settlement between Banks and Central Banks
+Lightening --> Very fast , but hot wallet. Otherwise your partner can cheat (understand). Not a significant value can be stored . Also need managing payment channels.+ Tax calculation(sepate chargeable feature beyond 50 tranactions).Save privacy by avoiding 3rd party tax calculator
+
+Need custodial layer2 solution for retail and institutions ( all won't like to take the headache of maintaining hot ( may be cold ) wallet)
+
+Why company will hold in its balanceshet?
+Ali baba
+Companies are used by govt( Inflation, capital control( A company in Nigeria hold bitcoin in a custodial wallet held by Barclays))
+
+It won't attract physical attack, a 2 min advance notice , we can send all funds to New York. Enymy cannot take the money unlike Gold
+
+21 million hardcap. Whatever human ingennuity is going to produce in after 50 years, I have the financial muscle to buy 1/21 million of that.  If you are betting on Single family home,
+in long run you are betting againt common human ingenuity. SOme man or woman  , somewhere in the world is gonna find a way to make it better if it has utility value. Point to note that Bitcoin has no utility value . It has only
+moneytary value. Like Gold utility value 1 trillion (verify) and Gold's moneytariy premium 10 trillion USD. Real Estate goes us as Rich want a better store of value (3BHK appartment is not expanding at that fast rate). Then
+comes prime realestate.Sizeable portion of people believe this. We can cater them
+
+Price driving factor:
+Govt spending going to increase ( borrow from market, Fed will issue new money)
+If etf approved , 100s of billions of dollar are coming. 118x factor
+Hyperinflation in Africa, Argentina etc
+
+
+Business model1: Make custodial wallet, borrow against that at low interest rate, if good cibil score , borrow beyound that at higher interest rate
+
+Business model2: Custodial wallet for firm and HNI
+
+Business model2: Help Bank of England roll out CBDC
+
+Business model 3: Provide secure encryption service to other company
+
+Business model 4: Improve security in credit card by implementing public key cryptograpy ( not related to Bitcoin )
+
+
+Risks: leak of pvt keys
+
+
+Core will be our bitcoin implementation. It has potential to be a whole dedicated TC by 2030
+
+
+Implmentation:
+cold storage: PIN of locker---> Signing device (BIP 32 seed(HD wallet),Print QR code and  Naminate it or auto inscribe in a metal sheet)
+
+Emergency send button to predefined address ( in case of war)
+
+POC:
+Bitcoin signature of hash of press release
+
+
+John was 1st commented on our presntation.
+Some board member appeciated it just AFTER THE Presentation . And some in the end of presentation.
+
+
+What is my objective and how that align with Barclay's objective?
+A role of 
+Digital Asset Developer or
+Financial Technology Developer( if Barclays want to keep the development as secret until the roll out of product)
+Hiring freeze provides exception for niche area.       
+We will create prototype , then we can rigourously test it.( DDOS attack, attempt to reveal private key, right balance between scalability and security etc, audit by CSO)
+The moment, our leadership decide to release a product we can scale the prototype and release that in matter of 4-8 weeks.
+Or keep everything at pre-release state and rollout the product in matter of few days ( will cost company more to keep it in stand by)
+
+
+If we do not do any of the above, and later we decide to implement this at that time cost of hiring a single  Bitcoin developer will be in millions(just like HFT graduate going in HFT field ) and it will take 3-4 quarters to do poc , release in non prod , test the prod and then release the product.
+Analogy: A company working only with desktop in office and now want to/ sorry it needs to switch to laptop during the starting of covid lockdown. At that moment cost to switch to laptop was too high compared to the firm which switched
+to laptop before covid lockdown. 
+These type of compensation is justifield , because they are very very few in no. also they are taking a huge carrier risk by working on such a niche area.
+Ex- My previous LM in ESaaS Harish's meeting with Lisa. ANd noy Elastic Search has huge impact in Barclays
+
+
+Unclrelated from deprecian of a fiat. Resilience

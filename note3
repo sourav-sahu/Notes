@@ -1,23 +1,27 @@
-I understand the importance of submitting this form, and I'm committed to complying with company policies. To facilitate this process, I'm looking for guidance or options such as:
+task checkDuplicatePackages {
+    doLast {
+        def jarFiles = fileTree(buildDir).include('**/*.jar').files
+        def duplicatePackages = [:]
 
-A digital version of the Gratuity Nomination form that I can complete electronically and submit via email.
-Instructions on how to securely mail the physical form to the HR department for processing.
-Information on any upcoming virtual or remote assistance sessions to guide employees in completing the form online.
-I am open to any other solutions or suggestions that would enable me to meet this requirement while adhering to health and safety guidelines.
+        jarFiles.each { jarFile ->
+            def zip = new java.util.zip.ZipFile(jarFile)
+            zip.entries().each { entry ->
+                if (entry.name.endsWith(".class")) {
+                    def packageName = entry.name.replaceAll("/", ".").replace(".class", "")
+                    duplicatePackages[packageName] = (duplicatePackages[packageName] ?: 0) + 1
+                }
+            }
+            zip.close()
+        }
 
-Your assistance in providing alternate options for form submission is greatly appreciated. Please let me know how I can proceed in this matter, and if there are any deadlines I need to be aware of.
+        duplicatePackages.each { packageName, count ->
+            if (count > 1) {
+                println "Duplicate package found: $packageName in $count JAR files."
+            }
+        }
 
-Thank you for your attention to this request, and for your support in ensuring that all employees can meet their obligations during these challenging times.
-
-Best regards,
-
-[Your Name]
-[Your Employee ID or Department]
-[Your Contact Information]
-
-This email clearly communicates your request for alternate options and shows your willingness to cooperate while highlighting the challenges you're facing due to remote work. Be sure to adjust the email as needed to suit your specific circumstances and company policies.
-
-
-
-
-
+        if (duplicatePackages.isEmpty()) {
+            println "No duplicate packages found."
+        }
+    }
+}

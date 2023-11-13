@@ -1,6 +1,7 @@
 task checkDuplicatePackages {
     doLast {
         def jarFiles = fileTree(buildDir).include('**/*.jar').files
+        def packageOccurrences = [:]
         def duplicatePackages = [:]
 
         jarFiles.each { jarFile ->
@@ -8,16 +9,18 @@ task checkDuplicatePackages {
             zip.entries().each { entry ->
                 if (entry.name.endsWith(".class")) {
                     def packageName = entry.name.replaceAll("/", ".").replace(".class", "")
-                    duplicatePackages[packageName] = (duplicatePackages[packageName] ?: 0) + 1
+                    def packageKey = "$packageName@$jarFile"
+                    packageOccurrences[packageKey] = (packageOccurrences[packageKey] ?: 0) + 1
+                    if (packageOccurrences[packageKey] > 1) {
+                        duplicatePackages[packageName] = (duplicatePackages[packageName] ?: []) + jarFile
+                    }
                 }
             }
             zip.close()
         }
 
-        duplicatePackages.each { packageName, count ->
-            if (count > 1) {
-                println "Duplicate package found: $packageName in $count JAR files."
-            }
+        duplicatePackages.each { packageName, jars ->
+            println "Duplicate package found: $packageName in JAR files: $jars"
         }
 
         if (duplicatePackages.isEmpty()) {

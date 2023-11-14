@@ -1,30 +1,42 @@
-task checkDuplicatePackages {
-    doLast {
-        def jarFiles = fileTree(buildDir).include('**/*.jar').files
-        def packageOccurrences = [:]
-        def duplicatePackages = [:]
+import os
+import zipfile
 
-        jarFiles.each { jarFile ->
-            def zip = new java.util.zip.ZipFile(jarFile)
-            zip.entries().each { entry ->
-                if (entry.name.endsWith(".class")) {
-                    def packageName = entry.name.replaceAll("/", ".").replace(".class", "")
-                    def packageKey = "$packageName@$jarFile"
-                    packageOccurrences[packageKey] = (packageOccurrences[packageKey] ?: 0) + 1
-                    if (packageOccurrences[packageKey] > 1) {
-                        duplicatePackages[packageName] = (duplicatePackages[packageName] ?: []) + jarFile
-                    }
-                }
-            }
-            zip.close()
-        }
+def extract_packages(jar_path):
+    packages = set()
 
-        duplicatePackages.each { packageName, jars ->
-            println "Duplicate package found: $packageName in JAR files: $jars"
-        }
+    with zipfile.ZipFile(jar_path, 'r') as jar_file:
+        for entry in jar_file.namelist():
+            if entry.endswith('.class'):
+                # Extracting the package from the class file path
+                package = entry.rsplit('/', 1)[0].replace('/', '.')
+                packages.add(package)
 
-        if (duplicatePackages.isEmpty()) {
-            println "No duplicate packages found."
-        }
-    }
-}
+    return packages
+
+def find_duplicate_packages(jar_directory):
+    jar_files = [f for f in os.listdir(jar_directory) if f.endswith('.jar')]
+    packages_mapping = {}
+
+    for jar_file in jar_files:
+        jar_path = os.path.join(jar_directory, jar_file)
+        packages = extract_packages(jar_path)
+
+        for package in packages:
+            if package in packages_mapping:
+                packages_mapping[package].append(jar_file)
+            else:
+                packages_mapping[package] = [jar_file]
+
+    duplicate_packages = {pkg: jars for pkg, jars in packages_mapping.items() if len(jars) > 1}
+    return duplicate_packages
+
+if __name__ == "__main__":
+    jar_directory = "/path/to/your/java/repo"
+    duplicate_packages = find_duplicate_packages(jar_directory)
+
+    if duplicate_packages:
+        print("Duplicate packages found:")
+        for package, jars in duplicate_packages.items():
+            print(f"Package: {package}, JARs: {', '.join(jars)}")
+    else:
+        print("No duplicate packages found.")

@@ -1,42 +1,8 @@
-import os
-import zipfile
-
-def extract_packages(jar_path):
-    packages = set()
-
-    with zipfile.ZipFile(jar_path, 'r') as jar_file:
-        for entry in jar_file.namelist():
-            if entry.endswith('.class'):
-                # Extracting the package from the class file path
-                package = entry.rsplit('/', 1)[0].replace('/', '.')
-                packages.add(package)
-
-    return packages
-
-def find_duplicate_packages(jar_directory):
-    jar_files = [f for f in os.listdir(jar_directory) if f.endswith('.jar')]
-    packages_mapping = {}
-
-    for jar_file in jar_files:
-        jar_path = os.path.join(jar_directory, jar_file)
-        packages = extract_packages(jar_path)
-
-        for package in packages:
-            if package in packages_mapping:
-                packages_mapping[package].append(jar_file)
-            else:
-                packages_mapping[package] = [jar_file]
-
-    duplicate_packages = {pkg: jars for pkg, jars in packages_mapping.items() if len(jars) > 1}
-    return duplicate_packages
-
-if __name__ == "__main__":
-    jar_directory = "/path/to/your/java/repo"
-    duplicate_packages = find_duplicate_packages(jar_directory)
-
-    if duplicate_packages:
-        print("Duplicate packages found:")
-        for package, jars in duplicate_packages.items():
-            print(f"Package: {package}, JARs: {', '.join(jars)}")
-    else:
-        print("No duplicate packages found.")
+Subject: Expression of Interest and Value Proposition
+Dear [Manager's Name],
+I trust this email finds you well. I recently had the pleasure of interviewing with you for the position_______, and I would like to express my sincere appreciation for the opportunity.
+I have thoroughly enjoyed my current role, where we benefit from various provisions such as protection from layoffs, dedicated time for self-study or pursuing hobbies, a stipend of £5000 for any course of our choice, and the opportunity for three rotations. However, our take-home compensation in this Explorer program stands at around 50% of the similar roles in other financial companies recruiting through IIT campus placements.
+While I have cherished my time in my current role, I am now eager to explore new horizons and believe that the challenges and opportunities within your team align with my career aspirations. However, I must candidly express that the decision to transition hinges on the provision of sufficient incentives.
+Given the chance to be a part of your team, I am confident that I can contribute significantly through my technical skillsets, keen attention to detail, and rapid learning ability. I have demonstrated my proficiency in preparing reports using MS Word as well as LaTeX  (which increases speed while dealing with complex equations, tables, and detailed indices). I believe these skills would enable me to generate high-quality reports at an accelerated pace, thereby positively impacting the team's overall productivity.
+Thank you for considering my application, and I eagerly await your valuable feedback.
+Best Regards,
